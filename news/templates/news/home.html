@@ -1,0 +1,59 @@
+{% extends 'news/base.html' %}
+
+{% block title %}News API - Home{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to the News</h1>
+    <p class="lead">This project uses NewsAPI.org to fetch and display the latest news from around the world.</p>
+    <hr class="my-4">
+    <p>Search for news or browse by category:</p>
+    
+    <form action="{% url 'fetch_news' %}" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search for news...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+    
+    <div class="category-buttons">
+        <p><strong>Browse by category:</strong></p>
+        <div class="d-flex flex-wrap">
+            {% for category in categories %}
+            <a href="{% url 'fetch_news' %}?category={{ category }}" class="btn btn-outline-primary m-1">
+                {{ category|title }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Real-time Updates</h5>
+                <p class="card-text">Get the latest news as it happens from various sources around the world.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Multiple Categories</h5>
+                <p class="card-text">Browse news by different categories like business, technology, sports, and more.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Global Coverage</h5>
+                <p class="card-text">Access news from different countries and in multiple languages.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
