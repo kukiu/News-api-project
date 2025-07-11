@@ -125,3 +125,11 @@ def fetch_news(request):
         # Handle any exceptions that might occur
         error_message = str(e)
         return render(request, 'news/error.html', {'error_message': error_message})
+        
+def home(request):
+    # Available categories for the filter
+    categories = [
+        'all', 'business', 'entertainment', 'general', 
+        'health', 'science', 'sports', 'technology'
+    ]
+    return render(request, 'news/home.html', {'categories': categories})
